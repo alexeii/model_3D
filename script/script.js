@@ -23,16 +23,32 @@ window.addEventListener("DOMContentLoaded", () => {
 
         function updateClock() {
             const timer = getTimeRemaining();
-
-            timerHours.textContent = timer.hours;
-            timerMinutes.textContent = timer.minutes;
-            timerSeconds.textContent = timer.seconds;
+            if (timer.hours < 10) {
+                timerHours.textContent = '0' + timer.hours;
+            } else {
+                timerHours.textContent = timer.hours;
+            }
+            if (timer.minutes < 10) {
+                timerMinutes.textContent = '0' + timer.minutes;
+            } else {
+                timerMinutes.textContent = timer.minutes;
+            }
+            if (timer.seconds < 10) {
+                timerSeconds.textContent = '0' + timer.seconds;
+            } else {
+                timerSeconds.textContent = timer.seconds;
+            }
             if (timer.timeRemaining > 0) {
-                setTimeout(updateClock, 1000);
+                // eslint-disable-next-line no-use-before-define
+                clearInterval(idTimeout);
+            } else if (timer.timeRemaining <= 0) {
+                timerHours.textContent = '00';
+                timerMinutes.textContent = '00';
+                timerSeconds.textContent = '00';
             }
         }
 
-        updateClock();
+        const idTimeout = setInterval(updateClock, 1000);
     };
 
     setInterval(countTimer, 1000, "01 January 2021");
