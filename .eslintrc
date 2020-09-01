@@ -2,7 +2,7 @@
   "env": {
     "browser": true,
     "es6": true,
-    "node": false
+    "node": true
   },
   "extends": "eslint:recommended",
   "parserOptions": {
@@ -12,7 +12,7 @@
   "rules": {
     "indent": [
       "error",
-      4
+      2
     ],
     "linebreak-style": [
       "error",
@@ -37,10 +37,10 @@
       "error",
       "always"
     ],
-    "strict": [
+    /* "strict": [
       "error",
       "global"
-    ],
+    ], */
     "brace-style": [
       "error",
       "1tbs",
@@ -200,10 +200,10 @@
         "functions": false
       }
     ],
-    "arrow-parens": [
+    /* "arrow-parens": [
       "error",
       "as-needed"
-    ],
+    ], */
     "arrow-body-style": [
       "error",
       "as-needed"
