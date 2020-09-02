@@ -51,7 +51,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const idTimeout = setInterval(updateClock, 1000);
   };
 
-  setInterval(countTimer, 1000, "01 January 2021");
+  setInterval(countTimer, 1000, "01 october 2020");
 
   //меню
   const toggleMenu = () => {
@@ -61,25 +61,22 @@ window.addEventListener("DOMContentLoaded", () => {
     const menuItem = menu.querySelectorAll("ul>li");
 
     const handlerMenu = () => {
-      menu.classList.toggle('active-menu');
+      menu.classList.toggle("active-menu");
     };
 
     btnMenu.addEventListener("click", handlerMenu);
     closeBtn.addEventListener("click", handlerMenu);
 
-    menuItem.forEach(item => item.addEventListener("click", handlerMenu));
-
-
+    menuItem.forEach((item) => item.addEventListener("click", handlerMenu));
   };
   toggleMenu();
 
-
   //popup
   const togglePopup = () => {
-    const popup = document.querySelector('.popup');
-    const popupBtn = document.querySelectorAll('.popup-btn');
-    const popUpClose = document.querySelector('.popup-close');
-    const popupContent = document.querySelector('.popup-content');
+    const popup = document.querySelector(".popup");
+    const popupBtn = document.querySelectorAll(".popup-btn");
+    const popUpClose = document.querySelector(".popup-close");
+    const popupContent = document.querySelector(".popup-content");
     let count = 0;
     let butInteval;
 
@@ -88,32 +85,27 @@ window.addEventListener("DOMContentLoaded", () => {
       count++;
 
       if (count < 100) {
-        popupContent.style.top = count + 'px';
+        popupContent.style.top = count + "px";
       } else {
         cancelAnimationFrame(butInteval);
       }
-
     };
 
-
     popupBtn.forEach((elem) => {
-      elem.addEventListener('click', () => {
-
-        popup.style.display = 'block';
+      elem.addEventListener("click", () => {
+        popup.style.display = "block";
         if (window.innerWidth > 768) {
-          popupContent.style.top = 0 + 'px';
+          popupContent.style.top = 0 + "px";
           butInteval = requestAnimationFrame(popUpMove);
         }
       });
     });
 
-    popUpClose.addEventListener('click', () => {
-      popup.style.display = 'none';
+    popUpClose.addEventListener("click", () => {
+      popup.style.display = "none";
       count = 0;
     });
-
   };
 
   togglePopup();
-
 });
