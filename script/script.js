@@ -165,7 +165,7 @@ window.addEventListener("DOMContentLoaded", () => {
       dot[i] = newDot;
       portfoliDots.append(dot[i]);
     }
-
+    dot[0].classList.add('dot-active');
     let currentSlide = 0;
     let interval;
     const prevSlide = (elem, index, strClass) => {
