@@ -252,43 +252,15 @@ window.addEventListener("DOMContentLoaded", () => {
     target.src = target.dataset.img;
     target.dataset.img = newsrc;
   };
+  colPhotoChange.forEach((item) => {
+    item.addEventListener("mouseenter", (event) => {
+      togglePhoto(event.target);
+    });
+    item.addEventListener("mouseleave", (event) => {
+      togglePhoto(event.target);
+    });
+  });
 
-  colPhotoChange[0].addEventListener("mouseenter", (event) => {
-    togglePhoto(event.target);
-  });
-  colPhotoChange[0].addEventListener("mouseleave", (event) => {
-    togglePhoto(event.target);
-  });
-  colPhotoChange[1].addEventListener("mouseenter", (event) => {
-    togglePhoto(event.target);
-  });
-  colPhotoChange[1].addEventListener("mouseleave", (event) => {
-    togglePhoto(event.target);
-  });
-  colPhotoChange[2].addEventListener("mouseenter", (event) => {
-    togglePhoto(event.target);
-  });
-  colPhotoChange[2].addEventListener("mouseleave", (event) => {
-    togglePhoto(event.target);
-  });
-  colPhotoChange[3].addEventListener("mouseenter", (event) => {
-    togglePhoto(event.target);
-  });
-  colPhotoChange[3].addEventListener("mouseleave", (event) => {
-    togglePhoto(event.target);
-  });
-  colPhotoChange[4].addEventListener("mouseenter", (event) => {
-    togglePhoto(event.target);
-  });
-  colPhotoChange[4].addEventListener("mouseleave", (event) => {
-    togglePhoto(event.target);
-  });
-  colPhotoChange[5].addEventListener("mouseenter", (event) => {
-    togglePhoto(event.target);
-  });
-  colPhotoChange[5].addEventListener("mouseleave", (event) => {
-    togglePhoto(event.target);
-  });
   //Ввод только цифр в блоке калькулятор
   const calcBlock = document.querySelector(".calc-block");
   const calcItemInput = calcBlock.querySelectorAll("input");
