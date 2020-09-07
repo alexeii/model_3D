@@ -155,17 +155,17 @@ window.addEventListener("DOMContentLoaded", () => {
 
   //Слайдер портфолио
   const slider = () => {
-    const slide = document.querySelectorAll('.portfolio-item');
-    const slider = document.querySelector('.portfolio-content');
-    const portfoliDots = document.querySelector('.portfolio-dots');
+    const slide = document.querySelectorAll(".portfolio-item");
+    const slider = document.querySelector(".portfolio-content");
+    const portfoliDots = document.querySelector(".portfolio-dots");
     const dot = [];
     for (let i = 0; i < slide.length; i++) {
-      const newDot = document.createElement('li');
-      newDot.className = 'dot';
+      const newDot = document.createElement("li");
+      newDot.className = "dot";
       dot[i] = newDot;
       portfoliDots.append(dot[i]);
     }
-    dot[0].classList.add('dot-active');
+    dot[0].classList.add("dot-active");
     let currentSlide = 0;
     let interval;
     const prevSlide = (elem, index, strClass) => {
@@ -176,14 +176,14 @@ window.addEventListener("DOMContentLoaded", () => {
     };
 
     const autoPlaySlide = () => {
-      prevSlide(slide, currentSlide, 'portfolio-item-active');
-      prevSlide(dot, currentSlide, 'dot-active');
+      prevSlide(slide, currentSlide, "portfolio-item-active");
+      prevSlide(dot, currentSlide, "dot-active");
       currentSlide++;
       if (currentSlide >= slide.length) {
         currentSlide = 0;
       }
-      nextSlide(slide, currentSlide, 'portfolio-item-active');
-      nextSlide(dot, currentSlide, 'dot-active');
+      nextSlide(slide, currentSlide, "portfolio-item-active");
+      nextSlide(dot, currentSlide, "dot-active");
     };
 
     const startSlide = (time = 3000) => {
@@ -193,20 +193,20 @@ window.addEventListener("DOMContentLoaded", () => {
       clearInterval(interval);
     };
 
-    slider.addEventListener('click', (event) => {
+    slider.addEventListener("click", (event) => {
       event.preventDefault();
       const target = event.target;
-      if (!target.matches('.portfolio-btn, .dot')) {
+      if (!target.matches(".portfolio-btn, .dot")) {
         return;
       }
-      prevSlide(slide, currentSlide, 'portfolio-item-active');
-      prevSlide(dot, currentSlide, 'dot-active');
+      prevSlide(slide, currentSlide, "portfolio-item-active");
+      prevSlide(dot, currentSlide, "dot-active");
 
-      if (target.matches('#arrow-right')) {
+      if (target.matches("#arrow-right")) {
         currentSlide++;
-      } else if (target.matches('#arrow-left')) {
+      } else if (target.matches("#arrow-left")) {
         currentSlide--;
-      } else if (target.matches('.dot')) {
+      } else if (target.matches(".dot")) {
         dot.forEach((elem, index) => {
           if (elem === target) {
             currentSlide = index;
@@ -219,23 +219,82 @@ window.addEventListener("DOMContentLoaded", () => {
       if (currentSlide < 0) {
         currentSlide = slide.length - 1;
       }
-      nextSlide(slide, currentSlide, 'portfolio-item-active');
-      nextSlide(dot, currentSlide, 'dot-active');
+      nextSlide(slide, currentSlide, "portfolio-item-active");
+      nextSlide(dot, currentSlide, "dot-active");
     });
 
-    slider.addEventListener('mouseover', (event) => {
-      if (event.target.matches('.portfolio-btn') || event.target.matches('.dot')) {
+    slider.addEventListener("mouseover", (event) => {
+      if (
+        event.target.matches(".portfolio-btn") ||
+        event.target.matches(".dot")
+      ) {
         stopSlide();
       }
     });
-    slider.addEventListener('mouseout', (event) => {
-      if (event.target.matches('.portfolio-btn') || event.target.matches('.dot')) {
+    slider.addEventListener("mouseout", (event) => {
+      if (
+        event.target.matches(".portfolio-btn") ||
+        event.target.matches(".dot")
+      ) {
         startSlide();
       }
     });
     startSlide(1500);
   };
 
-
   slider();
+
+  //Изменение фото при наведении мышки в блоке Наша команда
+  const command = document.querySelector(".command");
+  const colPhotoChange = command.querySelectorAll(".command__photo");
+  const togglePhoto = (target) => {
+    const newsrc = target.src;
+    target.src = target.dataset.img;
+    target.dataset.img = newsrc;
+  };
+
+  colPhotoChange[0].addEventListener("mouseenter", (event) => {
+    togglePhoto(event.target);
+  });
+  colPhotoChange[0].addEventListener("mouseleave", (event) => {
+    togglePhoto(event.target);
+  });
+  colPhotoChange[1].addEventListener("mouseenter", (event) => {
+    togglePhoto(event.target);
+  });
+  colPhotoChange[1].addEventListener("mouseleave", (event) => {
+    togglePhoto(event.target);
+  });
+  colPhotoChange[2].addEventListener("mouseenter", (event) => {
+    togglePhoto(event.target);
+  });
+  colPhotoChange[2].addEventListener("mouseleave", (event) => {
+    togglePhoto(event.target);
+  });
+  colPhotoChange[3].addEventListener("mouseenter", (event) => {
+    togglePhoto(event.target);
+  });
+  colPhotoChange[3].addEventListener("mouseleave", (event) => {
+    togglePhoto(event.target);
+  });
+  colPhotoChange[4].addEventListener("mouseenter", (event) => {
+    togglePhoto(event.target);
+  });
+  colPhotoChange[4].addEventListener("mouseleave", (event) => {
+    togglePhoto(event.target);
+  });
+  colPhotoChange[5].addEventListener("mouseenter", (event) => {
+    togglePhoto(event.target);
+  });
+  colPhotoChange[5].addEventListener("mouseleave", (event) => {
+    togglePhoto(event.target);
+  });
+  //Ввод только цифр в блоке калькулятор
+  const calcBlock = document.querySelector(".calc-block");
+  const calcItemInput = calcBlock.querySelectorAll("input");
+  calcItemInput.forEach((item) => {
+    item.addEventListener("keyup", () => {
+      item.value = item.value.replace(/[^\d]/g, "");
+    });
+  });
 });
