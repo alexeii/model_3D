@@ -295,7 +295,16 @@ window.addEventListener("DOMContentLoaded", () => {
       if (typeValue && squareValue) {
         total = price * typeValue * squareValue * countValue * dayValue;
       }
-      totalValue.textContent = total;
+      let start = 0;
+      const timer = setInterval(() => {
+        totalValue.textContent = start++;
+        if (start > total) {
+          clearInterval(timer);
+          start = total;
+        }
+      });
+
+      //totalValue.textContent = total;
     };
 
     calcBlock.addEventListener("change", (event) => {
