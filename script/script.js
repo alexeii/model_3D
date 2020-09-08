@@ -62,11 +62,18 @@ window.addEventListener("DOMContentLoaded", () => {
       menu.classList.toggle("active-menu");
     };
 
-    btnMenu.addEventListener("click", handlerMenu);
+    //btnMenu.addEventListener("click", handlerMenu);
 
-    menu.addEventListener("click", (event) => {
+    document.body.addEventListener("click", (event) => {
       const target = event.target;
-      if (target.matches(".close-btn") || target.closest("ul>li")) {
+      if (
+        target.matches(".close-btn") ||
+        target.closest("ul>li") ||
+        target.closest(".menu>small") ||
+        target.closest(".menu>img")
+      ) {
+        handlerMenu();
+      } else if (menu.classList.contains("active-menu") && target !== menu) {
         handlerMenu();
       }
     });
