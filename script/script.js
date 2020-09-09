@@ -298,6 +298,7 @@ window.addEventListener("DOMContentLoaded", () => {
       let start = 0;
       const timer = setInterval(() => {
         totalValue.textContent = start++;
+        start++;
         if (start > total) {
           clearInterval(timer);
         }
