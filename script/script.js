@@ -55,14 +55,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
   //меню
   const toggleMenu = () => {
-    const btnMenu = document.querySelector(".menu");
     const menu = document.querySelector("menu");
 
     const handlerMenu = () => {
       menu.classList.toggle("active-menu");
     };
-
-    //btnMenu.addEventListener("click", handlerMenu);
 
     document.body.addEventListener("click", (event) => {
       const target = event.target;
@@ -305,9 +302,10 @@ window.addEventListener("DOMContentLoaded", () => {
       let start = 0;
       const timer = setInterval(() => {
         totalValue.textContent = start++;
+        start++;
+
         if (start > total) {
           clearInterval(timer);
-          start = total;
         }
       });
 
