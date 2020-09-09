@@ -300,7 +300,6 @@ window.addEventListener("DOMContentLoaded", () => {
         totalValue.textContent = start++;
         if (start > total) {
           clearInterval(timer);
-          start = total;
         }
       });
 
