@@ -68,7 +68,7 @@ window.addEventListener("DOMContentLoaded", () => {
       const target = event.target;
       if (
         target.matches(".close-btn") ||
-        target.closest("ul>li") ||
+        target.closest(".active-menu>ul>li") ||
         target.closest(".menu>small") ||
         target.closest(".menu>img")
       ) {
