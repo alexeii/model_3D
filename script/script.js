@@ -320,4 +320,143 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   };
   calc(100);
+
+  //валидация данных
+
+  const userNameValid = document.querySelectorAll("input[name='user_name']");
+  const userPhoneValid = document.querySelectorAll("input[name='user_phone']");
+  //const userEmailValid = document.querySelectorAll("input[name='user_email']");
+  const userMessageValid = document.querySelector("input[name='user_message']");
+
+  userNameValid.forEach((item) => {
+    item.addEventListener("keyup", () => {
+      item.value = item.value.replace(/[^а-я ]/gi, "");
+    });
+  });
+  userMessageValid.addEventListener("keyup", () => {
+    userMessageValid.value = userMessageValid.value.replace(/[^а-я ]/gi, "");
+  });
+  userPhoneValid.forEach((item) => {
+    item.addEventListener("keyup", () => {
+      item.value = item.value.replace(/[^\d\+]/g, "");
+    });
+  });
+  /* userEmailValid.forEach((item) => {
+    item.addEventListener("keyup", () => {
+      item.value = item.value.replace(/^\w+@\w+\.\w{2,}$/g, "");
+    });
+  }); */
+
+  //send-ajax-form
+
+  const sendForm = () => {
+    const errorMessage = "Что то пошло не так...";
+    const loadMessage = "Загрузка...";
+    const successMessage = "Спасибо! Мы скоро с вами свяжемся!";
+
+    const form1 = document.getElementById("form1");
+
+    const form2 = document.getElementById("form2");
+
+    const form3 = document.getElementById("form3");
+
+    const statusMessage = document.createElement("div");
+
+    statusMessage.style.cssText = "font-size: 2rem;";
+
+    form1.addEventListener("submit", (event) => {
+      event.preventDefault();
+      form1.appendChild(statusMessage);
+      statusMessage.textContent = loadMessage;
+      const formData = new FormData(form1);
+      let body = {};
+      formData.forEach((val, key) => {
+        body[key] = val;
+      });
+      // eslint-disable-next-line no-use-before-define
+      postData(
+        body,
+        () => {
+          statusMessage.textContent = successMessage;
+          event.target.querySelectorAll("input").forEach((item) => {
+            item.value = "";
+          });
+        },
+        (error) => {
+          statusMessage.textContent = errorMessage;
+          console.log(error);
+        }
+      );
+    });
+
+    form2.addEventListener("submit", (event) => {
+      event.preventDefault();
+      form2.appendChild(statusMessage);
+      statusMessage.textContent = loadMessage;
+      const formData = new FormData(form2);
+      let body = {};
+      formData.forEach((val, key) => {
+        body[key] = val;
+      });
+      // eslint-disable-next-line no-use-before-define
+      postData(
+        body,
+        () => {
+          statusMessage.textContent = successMessage;
+          event.target.querySelectorAll("input").forEach((item) => {
+            item.value = "";
+          });
+        },
+        (error) => {
+          statusMessage.textContent = errorMessage;
+          console.log(error);
+        }
+      );
+    });
+
+    form3.addEventListener("submit", (event) => {
+      event.preventDefault();
+      form3.appendChild(statusMessage);
+      statusMessage.style.cssText = `font-size: 2rem;
+      color: white;`;
+      statusMessage.textContent = loadMessage;
+      const formData = new FormData(form3);
+      let body = {};
+      formData.forEach((val, key) => {
+        body[key] = val;
+      });
+      // eslint-disable-next-line no-use-before-define
+      postData(
+        body,
+        () => {
+          statusMessage.textContent = successMessage;
+          event.target.querySelectorAll("input").forEach((item) => {
+            item.value = "";
+          });
+        },
+        (error) => {
+          statusMessage.textContent = errorMessage;
+          console.log(error);
+        }
+      );
+    });
+
+    const postData = (body, outputData, errorData) => {
+      const request = new XMLHttpRequest();
+      request.addEventListener("readystatechange", () => {
+        if (request.readyState !== 4) {
+          return;
+        }
+        if (request.status === 200) {
+          outputData();
+        } else {
+          errorData(request.status);
+        }
+      });
+      request.open("POST", "./server.php");
+      request.setRequestHeader("Content-Type", "application/json");
+      request.send(JSON.stringify(body));
+    };
+  };
+  sendForm();
 });
