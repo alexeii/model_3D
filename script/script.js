@@ -339,6 +339,10 @@ window.addEventListener("DOMContentLoaded", () => {
   userPhoneValid.forEach((item) => {
     item.addEventListener("keyup", () => {
       item.value = item.value.replace(/[^\d\+]/g, "");
+      if (item.value.length === 12) {
+        item.value = item.value.slice(0, -1);
+      }
+
     });
   });
   /* userEmailValid.forEach((item) => {
@@ -369,7 +373,7 @@ window.addEventListener("DOMContentLoaded", () => {
       form1.appendChild(statusMessage);
       statusMessage.textContent = loadMessage;
       const formData = new FormData(form1);
-      let body = {};
+      const body = {};
       formData.forEach((val, key) => {
         body[key] = val;
       });
@@ -381,6 +385,8 @@ window.addEventListener("DOMContentLoaded", () => {
           event.target.querySelectorAll("input").forEach((item) => {
             item.value = "";
           });
+          const timer = () => statusMessage.textContent = '';
+          setTimeout(timer, 2000);
         },
         (error) => {
           statusMessage.textContent = errorMessage;
@@ -394,7 +400,7 @@ window.addEventListener("DOMContentLoaded", () => {
       form2.appendChild(statusMessage);
       statusMessage.textContent = loadMessage;
       const formData = new FormData(form2);
-      let body = {};
+      const body = {};
       formData.forEach((val, key) => {
         body[key] = val;
       });
@@ -406,6 +412,8 @@ window.addEventListener("DOMContentLoaded", () => {
           event.target.querySelectorAll("input").forEach((item) => {
             item.value = "";
           });
+          const timer = () => statusMessage.textContent = '';
+          setTimeout(timer, 2000);
         },
         (error) => {
           statusMessage.textContent = errorMessage;
@@ -421,7 +429,7 @@ window.addEventListener("DOMContentLoaded", () => {
       color: white;`;
       statusMessage.textContent = loadMessage;
       const formData = new FormData(form3);
-      let body = {};
+      const body = {};
       formData.forEach((val, key) => {
         body[key] = val;
       });
@@ -433,6 +441,8 @@ window.addEventListener("DOMContentLoaded", () => {
           event.target.querySelectorAll("input").forEach((item) => {
             item.value = "";
           });
+          const timer = () => statusMessage.textContent = '';
+          setTimeout(timer, 2000);
         },
         (error) => {
           statusMessage.textContent = errorMessage;
