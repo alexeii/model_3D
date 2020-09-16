@@ -378,7 +378,10 @@ window.addEventListener("DOMContentLoaded", () => {
       });
       // eslint-disable-next-line no-use-before-define
       postData(body)
-        .then(() => {
+        .then((response) => {
+          if (response.status !== 200) {
+            throw new Error("status network not 200");
+          }
           statusMessage.textContent = successMessage;
           event.target.querySelectorAll("input").forEach((item) => {
             item.value = "";
@@ -403,7 +406,10 @@ window.addEventListener("DOMContentLoaded", () => {
       });
       // eslint-disable-next-line no-use-before-define
       postData(body)
-        .then(() => {
+        .then((response) => {
+          if (response.status !== 200) {
+            throw new Error("status network not 200");
+          }
           statusMessage.textContent = successMessage;
           event.target.querySelectorAll("input").forEach((item) => {
             item.value = "";
@@ -430,7 +436,10 @@ window.addEventListener("DOMContentLoaded", () => {
       });
       // eslint-disable-next-line no-use-before-define
       postData(body)
-        .then(() => {
+        .then((response) => {
+          if (response.status !== 200) {
+            throw new Error("status network not 200");
+          }
           statusMessage.textContent = successMessage;
           event.target.querySelectorAll("input").forEach((item) => {
             item.value = "";
@@ -445,22 +454,12 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 
     const postData = (body) =>
-      new Promise((resolve, reject) => {
-        const request = new XMLHttpRequest();
-        request.open("POST", "./server.php");
-        request.addEventListener("readystatechange", () => {
-          if (request.readyState !== 4) {
-            return;
-          }
-          if (request.status === 200) {
-            resolve();
-          } else {
-            reject(request.status);
-          }
-        });
-
-        request.setRequestHeader("Content-Type", "application/json");
-        request.send(JSON.stringify(body));
+      fetch("./server.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
       });
   };
   sendForm();
