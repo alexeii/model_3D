@@ -342,7 +342,6 @@ window.addEventListener("DOMContentLoaded", () => {
       if (item.value.length === 12) {
         item.value = item.value.slice(0, -1);
       }
-
     });
   });
   /* userEmailValid.forEach((item) => {
@@ -378,21 +377,19 @@ window.addEventListener("DOMContentLoaded", () => {
         body[key] = val;
       });
       // eslint-disable-next-line no-use-before-define
-      postData(
-        body,
-        () => {
+      postData(body)
+        .then(() => {
           statusMessage.textContent = successMessage;
           event.target.querySelectorAll("input").forEach((item) => {
             item.value = "";
           });
-          const timer = () => statusMessage.textContent = '';
+          const timer = () => (statusMessage.textContent = "");
           setTimeout(timer, 2000);
-        },
-        (error) => {
+        })
+        .catch((error) => {
           statusMessage.textContent = errorMessage;
-          console.log(error);
-        }
-      );
+          console.error(error);
+        });
     });
 
     form2.addEventListener("submit", (event) => {
@@ -405,21 +402,19 @@ window.addEventListener("DOMContentLoaded", () => {
         body[key] = val;
       });
       // eslint-disable-next-line no-use-before-define
-      postData(
-        body,
-        () => {
+      postData(body)
+        .then(() => {
           statusMessage.textContent = successMessage;
           event.target.querySelectorAll("input").forEach((item) => {
             item.value = "";
           });
-          const timer = () => statusMessage.textContent = '';
+          const timer = () => (statusMessage.textContent = "");
           setTimeout(timer, 2000);
-        },
-        (error) => {
+        })
+        .catch((error) => {
           statusMessage.textContent = errorMessage;
           console.log(error);
-        }
-      );
+        });
     });
 
     form3.addEventListener("submit", (event) => {
@@ -434,39 +429,39 @@ window.addEventListener("DOMContentLoaded", () => {
         body[key] = val;
       });
       // eslint-disable-next-line no-use-before-define
-      postData(
-        body,
-        () => {
+      postData(body)
+        .then(() => {
           statusMessage.textContent = successMessage;
           event.target.querySelectorAll("input").forEach((item) => {
             item.value = "";
           });
-          const timer = () => statusMessage.textContent = '';
+          const timer = () => (statusMessage.textContent = "");
           setTimeout(timer, 2000);
-        },
-        (error) => {
+        })
+        .catch((error) => {
           statusMessage.textContent = errorMessage;
           console.log(error);
-        }
-      );
+        });
     });
 
-    const postData = (body, outputData, errorData) => {
-      const request = new XMLHttpRequest();
-      request.addEventListener("readystatechange", () => {
-        if (request.readyState !== 4) {
-          return;
-        }
-        if (request.status === 200) {
-          outputData();
-        } else {
-          errorData(request.status);
-        }
+    const postData = (body) =>
+      new Promise((resolve, reject) => {
+        const request = new XMLHttpRequest();
+        request.open("POST", "./server.php");
+        request.addEventListener("readystatechange", () => {
+          if (request.readyState !== 4) {
+            return;
+          }
+          if (request.status === 200) {
+            resolve();
+          } else {
+            reject(request.status);
+          }
+        });
+
+        request.setRequestHeader("Content-Type", "application/json");
+        request.send(JSON.stringify(body));
       });
-      request.open("POST", "./server.php");
-      request.setRequestHeader("Content-Type", "application/json");
-      request.send(JSON.stringify(body));
-    };
   };
   sendForm();
 });
