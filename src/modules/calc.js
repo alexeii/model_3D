@@ -22,11 +22,11 @@ const calc = (price = 100) => {
             dayValue *= 1.5;
         }
         if (typeValue && squareValue) {
-            total = price * typeValue * squareValue * countValue * dayValue;
+            total = Math.floor(price * typeValue * squareValue * countValue * dayValue);
         }
         const start = [];
 
-        let count = total / 2;
+        let count = Math.ceil(total / 2);
         for (let i = 0; i < 10; i++) {
             start.push(count);
             count = Math.ceil(count / 2);
@@ -39,7 +39,7 @@ const calc = (price = 100) => {
             }
         }, 40);
 
-        //totalValue.textContent = total;
+
     };
 
     calcBlock.addEventListener("change", (event) => {

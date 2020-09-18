@@ -69,7 +69,7 @@ userNameValid.forEach((item) => {
     });
 });
 userMessageValid.addEventListener("keyup", () => {
-    userMessageValid.value = userMessageValid.value.replace(/[^а-я ]/gi, "");
+    userMessageValid.value = userMessageValid.value.replace(/[^а-я \,\.\?\!]/gi, "");
 });
 
 userPhoneValid.forEach((item) => {
