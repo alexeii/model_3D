@@ -1,26 +1,22 @@
 "use strict";
 
-
-import countTimer from './modules/countTimer';
-import toggleMenu from './modules/toggleMenu';
-import togglePopup from './modules/togglePopup';
-import tabs from './modules/tabs';
-import slider from './modules/slider';
-import calc from './modules/calc';
-import sendForm from './modules/sendForm';
+import countTimer from "./modules/countTimer";
+import toggleMenu from "./modules/toggleMenu";
+import togglePopup from "./modules/togglePopup";
+import tabs from "./modules/tabs";
+import slider from "./modules/slider";
+import calc from "./modules/calc";
+import sendForm from "./modules/sendForm";
 
 //Timer
-
-
+countTimer("01 october 2020");
 setInterval(countTimer, 1000, "01 october 2020");
 
 //меню
 
-
 toggleMenu();
 
 //popup
-
 
 togglePopup();
 
@@ -75,14 +71,15 @@ userNameValid.forEach((item) => {
 userMessageValid.addEventListener("keyup", () => {
     userMessageValid.value = userMessageValid.value.replace(/[^а-я ]/gi, "");
 });
+
 userPhoneValid.forEach((item) => {
+    item.maxLength = 12;
     item.addEventListener("keyup", () => {
         item.value = item.value.replace(/[^\d\+]/g, "");
-        if (item.value.length === 12) {
-            item.value = item.value.slice(0, -1);
-        }
     });
 });
+
+
 
 //send-ajax-form
 

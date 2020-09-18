@@ -24,14 +24,20 @@ const calc = (price = 100) => {
         if (typeValue && squareValue) {
             total = price * typeValue * squareValue * countValue * dayValue;
         }
-        let start = 0;
+        const start = [];
+
+        let count = total / 2;
+        for (let i = 0; i < 10; i++) {
+            start.push(count);
+            count = Math.ceil(count / 2);
+        }
+        start.reverse().push(total);
         const timer = setInterval(() => {
-            totalValue.textContent = start++;
-            start++;
-            if (start > total) {
+            totalValue.textContent = start.shift();
+            if (!start.length) {
                 clearInterval(timer);
             }
-        });
+        }, 40);
 
         //totalValue.textContent = total;
     };

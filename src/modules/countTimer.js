@@ -46,5 +46,6 @@ const countTimer = (deadline) => {
     }
 
     const idTimeout = setInterval(updateClock, 1000);
+    updateClock();
 };
 export default countTimer;

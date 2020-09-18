@@ -9,8 +9,8 @@
          butInteval = requestAnimationFrame(popUpMove);
          count++;
 
-         if (count < 100) {
-             popupContent.style.top = count + "px";
+         if (count < 15) {
+             popupContent.style.top = count ** 2 + "px";
          } else {
              cancelAnimationFrame(butInteval);
          }
